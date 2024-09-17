@@ -52,7 +52,7 @@ const Discover_team2 = () => {
     <section className="w-full h-[110vh] mt-[300px] bg-black px-20 py-12 flex flex-col md:flex-row justify-around items-center mx-auto">
       <div>
         <span className="block mb-4 text-xs md:text-sm text-white font-medium">
-          Better every day
+          the Skill&Tell Team
         </span>
         <h3 className="text-4xl text-white md:text-6xl font-semibold">
           {currentText.title || "Default Title"}
@@ -64,7 +64,7 @@ const Discover_team2 = () => {
           {currentText.description || "Default description content."}
         </p>
         <button className="bg-indigo-500 text-white font-medium py-2 px-4 rounded transition-all hover:bg-indigo-600 active:scale-95">
-          Find a class
+         Press 
         </button>
       </div>
       <SwipeCards onCardClick={handleCardClick} cardData={cardData} />
