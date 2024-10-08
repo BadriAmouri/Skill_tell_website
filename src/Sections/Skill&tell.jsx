@@ -8,28 +8,28 @@ export const Example = () => {
       renderImageBuffer={50}
       rotationRange={25}
       images={[
-        "/imgs/active/1.jpg",
-        "/imgs/active/2.jpg",
-        "/imgs/active/3.jpg",
-        "/imgs/active/4.jpg",
-        "/imgs/active/5.jpg",
-        "/imgs/active/6.jpg",
-        "/imgs/active/7.jpg",
-        "/imgs/active/8.jpg",
-        "/imgs/active/9.jpg",
-        "/imgs/active/10.jpg",
-        "/imgs/active/11.jpg",
-        "/imgs/active/12.jpg",
-        "/imgs/active/13.jpg",
-        "/imgs/active/14.jpg",
-        "/imgs/active/15.jpg",
-        "/imgs/active/16.jpg",
+        "/IMG_8329.JPG",
+        "/photo_5944920236375521732_y.jpg",
+        "/photo_5944920236375521727_y.jpg",
+        "/IMG_8319.JPG",
+        "/photo_11_2024-03-03_18-20-47.jpg",
+        "/IMG_8414.JPG",
+        "/IMG_8593.JPG",
+        "/IMG_8638.JPG",
+        "/IMG_2720.jpg",
+        "/IMG_2719.jpg",
+        "/IMG_2718.jpg",
+        "/IMG_2717.jpg",
+        "/IMG_2713.jpg",
+        "/photo_6_2024-03-03_18-28-03.jpg",
+        "/IMG_6857.JPG",
+        "/photo_35_2024-03-03_18-20-47.jpg",
       ]}
     >
       <section className="grid font-abc h-screen w-full place-content-center bg-white">
         <p className="flex items-center gap-2 text-3xl font-bold uppercase text-black">
           <FiMousePointer />
-          <span>Skill & Tell</span>
+          <span>Coming Soon</span>
         </p>
       </section>
     </MouseImageTrail>
