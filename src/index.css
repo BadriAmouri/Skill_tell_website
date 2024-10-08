@@ -19,3 +19,9 @@
     width: 200px;
 }
 
+
+ .game-section {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+

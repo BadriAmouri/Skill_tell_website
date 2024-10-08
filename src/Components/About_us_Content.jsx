@@ -14,7 +14,7 @@ function SkillntellClub() {
   };
 
   return (
-    <main className="flex w-full h-[800px] items-end"> {/* Set a fixed height here */}
+    <main className="flex w-full h-[800px] cursor-pointer items-end"> {/* Set a fixed height here */}
       {/* First section */}
       { expanded === null ? 
       (

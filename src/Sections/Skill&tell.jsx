@@ -26,7 +26,7 @@ export const Example = () => {
         "/photo_35_2024-03-03_18-20-47.jpg",
       ]}
     >
-      <section className="grid font-abc h-screen w-full place-content-center bg-white">
+      <section className="grid font-abc h-screen w-full place-content-center bg-gray-100">
         <p className="flex items-center gap-2 text-3xl font-bold uppercase text-black">
           <FiMousePointer />
           <span>Coming Soon</span>
@@ -125,7 +125,7 @@ const MouseImageTrail = ({
   return (
     <div
       ref={scope}
-      className="relative overflow-hidden"
+      className="relative overflow-hidden "
       onMouseMove={handleMouseMove}
     >
       {children}

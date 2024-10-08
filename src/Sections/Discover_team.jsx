@@ -78,8 +78,7 @@ function Discover_team() {
                 Meet our <br /> team
               </h1>
               <p className="mt-6 text-2xl leading-8 w-[433px] max-md:max-w-full">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Faucibus in libero risus
+                Discover our Amazing and Skilled Team Headers 
               </p>
             </div>
           </section>
