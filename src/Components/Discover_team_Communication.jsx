@@ -69,8 +69,8 @@ const Discover_team_Communication = () => {
     <section className="w-full h-auto overflow-hidden min-h-screen md:h-[110vh] mt-[300px] px-20 py-12 flex  flex-col md:flex-row justify-around items-center mx-auto">
     <div className="relative w-full max-w-lg ">
       <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob z-10"></div>
-      <div className="absolute top-0 -right-4 w-72 h-72 bg-amber-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000 z-10"></div>
-      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[#5A189A] rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000 z-10"></div>
+      <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000 z-10"></div>
+      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000 z-10"></div>
       <div className="m-8 relative space-y-4">
         <div>
           <span className="block mb-4 text-xs md:text-sm text-white font-medium">
