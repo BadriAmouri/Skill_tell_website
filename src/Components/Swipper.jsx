@@ -1,9 +1,8 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Navigation } from 'swiper/modules';
+import { EffectCoverflow, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 const Swiper_Cards = () => (
   <div className="relative">
@@ -20,11 +19,7 @@ const Swiper_Cards = () => (
         slideShadows: true,
       }}
       pagination={{ clickable: true }}
-      navigation={{
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      }}
-      modules={[EffectCoverflow, Pagination, Navigation]}
+      modules={[EffectCoverflow, Pagination]}
       className="swiper_container"
     >
       <SwiperSlide>
@@ -32,7 +27,14 @@ const Swiper_Cards = () => (
           <div
             className="h-48 bg-cover bg-center"
             style={{
-              backgroundImage: "url('https://via.placeholder.com/400')", // Replace with your image URL
+              backgroundImage: 
+              "url('https://cdn.builder.io/api/v1/image/assets/TEMP/980f340ee24e3c811a2d8dd673529827e14fd1528104ee4c168bd92035e13586?placeholderIfAbsent=true&apiKey=0e4114b9236c4c31975105344d580752')", // Replace with your image URL
+
+
+
+              
+
+
             }}
           >
             <div className="bg-gradient-to-t from-black to-transparent h-full flex items-end p-4">
@@ -51,7 +53,8 @@ const Swiper_Cards = () => (
           <div
             className="h-48 bg-cover bg-center"
             style={{
-              backgroundImage: "url('https://via.placeholder.com/400')", // Replace with your image URL
+              backgroundImage:
+               "url('https://cdn.builder.io/api/v1/image/assets/TEMP/b2c4e53c86fe6cc7219f8750aed219c5f077a6b85295cbcfcf6538b43e037456?placeholderIfAbsent=true&apiKey=0e4114b9236c4c31975105344d580752')", // Replace with your image URL
             }}
           >
             <div className="bg-gradient-to-t from-black to-transparent h-full flex items-end p-4">
@@ -70,7 +73,7 @@ const Swiper_Cards = () => (
           <div
             className="h-48 bg-cover bg-center"
             style={{
-              backgroundImage: "url('https://via.placeholder.com/400')", // Replace with your image URL
+              backgroundImage: "url('https://cdn.builder.io/api/v1/image/assets/TEMP/553b5b40b186a76399750d4ecc6d438117014452651bdd8ea4d998fdeca9ef1c?placeholderIfAbsent=true&apiKey=0e4114b9236c4c31975105344d580752')", // Replace with your image URL
             }}
           >
             <div className="bg-gradient-to-t from-black to-transparent h-full flex items-end p-4">
@@ -84,12 +87,6 @@ const Swiper_Cards = () => (
           </div>
         </div>
       </SwiperSlide>
-      <div className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
-        <div className="swiper-button-prev text-purple-500 hover:text-purple-700" />
-      </div>
-      <div className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
-        <div className="swiper-button-next text-purple-500 hover:text-purple-700" />
-      </div>
     </Swiper>
   </div>
 );

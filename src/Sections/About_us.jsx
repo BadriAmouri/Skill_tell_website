@@ -43,7 +43,7 @@ function AboutUs() {
   <div class="relative w-full max-w-lg">
     <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob z-10"></div>
     <div class="absolute top-0 -right-4 w-72 h-72 bg-amber-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000 z-10"></div>
-    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000 z-10"></div>
+    <div class="absolute -bottom-8 left-20 w-72 h-72 bg-[#5A189A] rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000 z-10"></div>
     <div class="m-8 relative space-y-4">
     <div className="flex flex-col items-start self-stretch my-auto max-md:mt-10 max-md:max-w-full">
                     <h1 className="text-7xl font-bold text-white leading-[80px] max-md:max-w-full max-md:text-4xl max-md:leading-[49px]">
