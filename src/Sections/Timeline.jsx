@@ -56,7 +56,7 @@ const Timeline = () => {
   }, []);
 
   return (
-    <div className="w-full mt-[200px] overflow-hidden h-[120vh] bg-black relative">
+    <div className="w-full mt-[200px] overflow-hidden min-h-screen bg-black relative">
      <div className='w-full flex sm:flex-row flex-col items-center justify-between md:relative'>
   {/* First div - absolute positioning only on larger screens */}
   <div className='absolute top-0 left-[-380px] hidden sm:block'>

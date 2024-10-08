@@ -51,7 +51,7 @@ function Discover_team() {
             whileInView="show"
             viewport={{ once: true, amount: 0.7 }}
         >
-    <main className="flex h-[120vh] md:h-[110vh] mt-[300px] overflow-hidden flex-col items-center px-16 pt-28 pb-9 bg-black max-md:px-5 max-md:pt-24">
+    <main className="flex min-h-screen md:h-[110vh] mt-[300px] overflow-hidden flex-col items-center px-16 pt-28 pb-9 bg-black max-md:px-5 max-md:pt-24">
       
       <section className="self-stretch max-md:max-w-full">
         <div className="flex gap-5 max-md:flex-col">
