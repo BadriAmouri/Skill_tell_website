@@ -31,7 +31,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="bg-black py-5">
+    <div className="bg-black py-5 ">
       <SlideTabs
         scrollToSection={scrollToSection}
         sections={{ heroRef, aboutRef, teamRef, eventsRef, sponsorsRef }}

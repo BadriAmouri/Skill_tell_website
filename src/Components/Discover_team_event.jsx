@@ -1,7 +1,6 @@
 import { useState } from "react";
 import SwipeCards from "./Animated_cards";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
-import Discover_team2 from "./Discover_team_Pr";
 
 const cardData = [
   {
@@ -58,21 +57,14 @@ const Discover_team_event = () => {
 
   const currentText = textData[currentIndex] || {};
 
- // Check if all cards have been clicked
- const allCardsClicked = clickedCards.length === cardData.length;
-
-
- if (allCardsClicked) {
-   // Render Discover_team_Relax when all cards have been clicked
-   return <Discover_team2/>;
- }
+ 
   
   return (
     <section className="w-full h-auto md:h-[110vh] overflow-hidden mt-[300px]  px-20 py-12 flex flex-col md:flex-row justify-around items-center mx-auto">
       <div className="relative w-full max-w-lg">
      <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob z-10"></div>
-      <div className="absolute top-0 -right-4 w-72 h-72 bg-amber-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000 z-10"></div>
-      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-[#5A189A] rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000 z-10"></div>
+      <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000 z-10"></div>
+      <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-4000 z-10"></div>
       <div className="m-8 relative space-y-4">
       <div>
         <span className="block mb-4 text-xs md:text-sm text-white font-medium">
@@ -92,7 +84,27 @@ const Discover_team_event = () => {
           <FaInstagram size={30} color="white" />
           <FaLinkedin size={30} color="white" />
         </div>
-        
+        <button
+          type="button"
+          className="text-white bg-purple-700 mt-8 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+        >
+         Join our  Team 
+          <svg
+            className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 10"
+          >
+            <path
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M1 5h12m0 0L9 1m4 4L9 9"
+            />
+          </svg>
+        </button>
       </div>
         </div>
         </div>

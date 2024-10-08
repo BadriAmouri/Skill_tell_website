@@ -19,9 +19,43 @@
     width: 200px;
 }
 
+.blob{
+  /* background: radial-gradient(circle, 
+                            #FFC78A 0%, 
+                            #F87306 32%, 
+                            #3C096C 96%); */
+  background: conic-gradient( #3C096C, #3C096C , #3C096C );
 
- .game-section {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+  animation: spin 10s linear infinite;
+}
 
+.blob-outer-container{
+  /* filter: blur(50px); */
+}
+.blob-mini{
+      background: radial-gradient(circle, 
+                            #FFC78A 0%, 
+                            #F87306 32%, 
+                            #3C096C 96%);
+}
+
+
+@keyframes spin{
+  0%{
+      transform: rotate(0deg) scale(2) ;
+  }100%{
+    transform: rotate(1turn) scale(2);
+  }
+}
+
+.bgs{
+   animation: spinBg 4s infinite;
+}
+
+
+
+.gradient-text {
+  background: linear-gradient(to right, #4B1485, #D6ABFE);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
