@@ -60,7 +60,7 @@ const Discover_team_event = () => {
  
   
   return (
-    <section className="w-full h-auto md:h-[110vh] overflow-hidden mt-[300px]  px-20 py-12 flex flex-col md:flex-row justify-around items-center mx-auto">
+    <section className="w-full h-auto min-h-screen md:h-[110vh] overflow-hidden mt-[300px]  px-20 py-12 flex flex-col md:flex-row justify-around items-center mx-auto">
       <div className="relative w-full max-w-lg">
      <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob z-10"></div>
       <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob animation-delay-2000 z-10"></div>

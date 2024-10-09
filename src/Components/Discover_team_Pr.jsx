@@ -64,7 +64,7 @@ const Discover_team2 = () => {
 
   return (
     
-    <section className="w-full relative h-[120vh]  mt-[300px]  px-20 py-12 flex flex-col md:flex-row  justify-around items-center mx-auto">
+    <section className="w-full relative  min-h-screen md:h-[120vh]  mt-[300px]  px-20 py-12 flex flex-col md:flex-row  justify-around items-center mx-auto">
       <div class="bg-black min-h-screen overflow-hidden flex items-center justify-center px-16">
   <div class="relative w-full max-w-lg">
     <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-500 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-blob z-10"></div>
