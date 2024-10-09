@@ -1,6 +1,7 @@
 import { useState } from "react";
 import SwipeCards from "./Animated_cards";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
+import Discover_team2 from "./Discover_team_Pr";
 
 const cardData = [
   {
@@ -57,6 +58,13 @@ const Discover_team_event = () => {
 
   const currentText = textData[currentIndex] || {};
 
+  // Check if all cards are clicked by comparing the length of clickedCards and cardData
+  const allCardsClicked = clickedCards.length === cardData.length;
+
+  if (allCardsClicked) {
+    // Render Discover_team_Itdesign only if all cards are clicked
+    return <Discover_team2 />;
+  }
  
   
   return (
