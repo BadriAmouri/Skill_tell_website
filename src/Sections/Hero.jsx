@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../index.css";
 import bg from "../assets/hero/bg.svg";
 import blur from "../../public/blurBg.svg";
+import club from "../../public/clublogo.svg";
 
 const Hero = () => {
   const words = ["inspiring", "dynamic", "creative", "welcoming"];
@@ -43,7 +44,10 @@ const Hero = () => {
     <div
       className="w-full h-screen flex bgs justify-center items-center blob-outer-container z-0 inset-0 relative bg-cover bg-center"
       style={{ backgroundImage: `url(${bg})` }}
-    >
+    > 
+    <img src={club} alt="" className=" absolute left-6 md:top-6 md:w-[170px] " />
+    <div className=" w-[1px] h-[600px] bg-white absolute top-2 right-4 md:right-14"></div>
+    <div className=" w-[60%] md:w-[45%] h-[0.6px] bg-white absolute top-6 right-1 md:right-8"></div>
       <div className="text-center z-10">
         <p className="text-[24px] md:text-[48px] text-white">
           Start your journey with our
