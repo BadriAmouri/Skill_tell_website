@@ -1,6 +1,7 @@
 import React from "react";
 import SkillntellClub from "../Components/About_us_Content";
 import { motion } from "framer-motion";
+import Swiper_Cards from "../Components/Swipper";
 
 function AboutUs() {
     const fadeIn = (direction, delay) => {
@@ -66,6 +67,9 @@ function AboutUs() {
                 <div className="hidden flex-col ml-5 w-[62%] md:flex max-md:ml-0 max-md:w-full">
                     <SkillntellClub />
                 </div>
+                <div className="flex flex-col ml-5 w-[62%] md:hidden max-md:ml-0 max-md:w-full">
+        <Swiper_Cards />
+    </div>
             </div>
             </motion.div>
             </main>

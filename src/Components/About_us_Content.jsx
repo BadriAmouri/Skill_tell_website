@@ -14,7 +14,7 @@ function SkillntellClub() {
   };
 
   return (
-    <main className="flex w-full h-[800px] items-end"> {/* Set a fixed height here */}
+    <main className="flex w-full h-[800px] cursor-pointer items-end"> {/* Set a fixed height here */}
       {/* First section */}
       { expanded === null ? 
       (
@@ -129,17 +129,13 @@ function SkillntellClub() {
           )}
           {expanded === 2 ? (
             <p className="mt-5 -mb-8 ml-9 text-xl tracking-wider leading-6 text-white max-md:mb-2.5 max-md:max-w-full overflow-auto">
-              Skillntell is a vibrant club created by students of ENSIA, driven
-              by a shared passion for artificial intelligence and technology. We
-              are a group of forward-thinking individuals committed to learning,
-              growing, and making an impact in the AI world. Our members come
-              from diverse backgrounds, united by a common goal to explore and
-              innovate in the field of AI.
+              At Skill&Tell, our vision is to build a strong community of students who share knowledge and skills, helping each other grow both personally and professionally. We believe in creating an environment where you can develop the hard and soft skills essential for success in your future career and smoothly transitioning into the working world. By encouraging students to share their experiences and support one another, we aim to have a positive impact not just within our club, but on the broader community and society as well.
             </p>
           ) : (
         
             <img loading="lazy" 
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b2c4e53c86fe6cc7219f8750aed219c5f077a6b85295cbcfcf6538b43e037456?placeholderIfAbsent=true&apiKey=0e4114b9236c4c31975105344d580752" 
+            src="
+            https://cdn.builder.io/api/v1/image/assets/TEMP/b2c4e53c86fe6cc7219f8750aed219c5f077a6b85295cbcfcf6538b43e037456?placeholderIfAbsent=true&apiKey=0e4114b9236c4c31975105344d580752" 
 
             alt=""              className="object-cover w-full h-full aspect-[0.35]"
             />
