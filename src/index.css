@@ -26,7 +26,7 @@
                             #3C096C 96%); */
   background: conic-gradient( #3C096C, #3C096C , #3C096C );
 
-  animation: spin 10s linear infinite;
+  animation: spin 6s linear infinite;
 }
 
 .blob-outer-container{

@@ -31,7 +31,7 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="bg-black py-5 ">
+    <div className="bg-black relative py-5 ">
       <SlideTabs
         scrollToSection={scrollToSection}
         sections={{ heroRef, aboutRef, teamRef, eventsRef, sponsorsRef }}
@@ -75,7 +75,7 @@ const SlideTabs = ({ scrollToSection, sections }) => {
           opacity: 0,
         }));
       }}
-      className="relative mx-auto flex w-fit rounded-full border-2 border-black bg-white "
+      className=" absolute md:right-16 top-11 md:top-12 mx-auto  flex gap-2 md:gap-9 w-fit rounded-full border-2 border-black bg-white "
     >
       <Tab setPosition={setPosition} onClick={() => scrollToSection(sections.heroRef)}>
         Home
@@ -116,7 +116,7 @@ const Tab = ({ children, setPosition, onClick }) => {
         });
       }}
       onClick={onClick} // Call onClick function when the tab is clicked
-      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-base"
+      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-[19px]"
     >
       {children}
     </li>
