@@ -71,7 +71,7 @@ const Hero = () => {
       <img
         src={blur}
         alt=""
-        className="absolute top-0 left-0 w-full h-full object-cover z-[-1]"
+        className="absolute top-0 left-0 w-full h-full object-cover z-[1] opacity-30"
       />
 
       <div className="blob-inner-container blur-[40px] rounded-[9999px] absolute left-0 right-0 m-auto overflow-hidden w-[90%] md:w-[45%] h-[50%] md:h-[60%]">
