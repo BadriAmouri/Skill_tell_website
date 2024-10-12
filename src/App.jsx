@@ -10,6 +10,8 @@ import Discover_team2 from './Components/Discover_team_Pr';
 import { Navbar } from './Components/Navbar';
 import Timeline from './Sections/Timeline';
 import Hero from './Sections/Hero';
+import Registration from './Views/registration';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   const fadeIn = (direction, delay) => {
@@ -34,19 +36,15 @@ function App() {
 
   return (
     <>
-      <div className="w-full  h-screen font-abc">
+       <Routes>
+          <Route path="/" element={
+             <div className="w-full  h-screen font-abc">   
+             <Navbar/>
+               </div>
+          } />
+          <Route path="/registration" element={<Registration />} />
+        </Routes>
       
-        
-        
-           <Navbar/>
-        
-           
-        
-        
-        
-
-
-      </div>
     </>
   );
 }
