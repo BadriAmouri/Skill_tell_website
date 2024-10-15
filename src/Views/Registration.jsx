@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bg from "../assets/bgreg.svg";
@@ -5,15 +6,14 @@ import "../index.css";
 
 const Registration = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phoneNumber: '',
+    fullName: '',            // *
+    email: '',               // *
+    phoneNumber: '',         // *
     school: '',
-    wereMember: '',
-    commentLastSeson: '',
-    motivation: '',
-    addition: '',
-
+    wereMember: '',          // * (boolean or 'yes'/'no')
+    commentLastSeason: '',   // Only show if wereMember is true
+    motivation: '',          // *
+    addition: '',            // Optional
   });
 
   const [currentStep, setCurrentStep] = useState(0);
@@ -29,27 +29,55 @@ const Registration = () => {
     }));
   };
 
+  const validateEmail = (email) => {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+  };
+
+  const validatePhoneNumber = (phoneNumber) => {
+    const phonePattern = /^\d{10}$/;
+    return phonePattern.test(phoneNumber);
+  };
+
   const handleNext = () => {
     const currentFieldName = Object.keys(formData)[currentStep];
-    if (formData[currentFieldName] === '') {
+
+    if (formData[currentFieldName] === '' && currentFieldName !== 'commentLastSeason' && currentFieldName !== 'addition') {
       setError(`Please fill in the ${currentFieldName.replace(/^\w/, (c) => c.toUpperCase())} field.`);
       return;
-    } else {
+    }
+
+    if (currentFieldName === 'email' && !validateEmail(formData.email)) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+
+    if (currentFieldName === 'phoneNumber' && !validatePhoneNumber(formData.phoneNumber)) {
+      setError('Phone number must contain exactly 10 digits.');
+      return;
+    }
+
+    if (currentFieldName === 'wereMember' && formData.wereMember === 'No') {
+      // Skip the commentLastSeason step if the user was not a member
+      setCurrentStep((prev) => prev + 2);
       setError(null);
+      return;
     }
-    // Skip team name if user does not have a team
-    if (currentStep === 5 && formData.hasTeam !== 'yes') {
-      setCurrentStep((prev) => prev + 2); // Skip the team name step
-    } else {
-      setCurrentStep((prev) => prev + 1);
-    }
+
+    setError(null);
+    setCurrentStep((prev) => prev + 1);
   };
 
   const handleBack = () => {
     if (currentStep === 0) {
-      navigate('/'); // Back to home page
+      navigate('/'); 
     } else {
-      setCurrentStep((prev) => prev - 1);
+      if (currentStep === 5 && formData.wereMember === 'No') {
+        // If going back to the 'wereMember' step and skipping the 'commentLastSeason'
+        setCurrentStep((prev) => prev - 2);
+      } else {
+        setCurrentStep((prev) => prev - 1);
+      }
     }
   };
 
@@ -59,18 +87,13 @@ const Registration = () => {
     const formDataObj = new FormData();
     formDataObj.append('FullName', formData.fullName);
     formDataObj.append('Email', formData.email);
-    formDataObj.append('Discord_Id', formData.discord_Id);
+    formDataObj.append('PhoneNumber', formData.phoneNumber);
     formDataObj.append('School', formData.school);
-    formDataObj.append('Year', formData.year);
-    formDataObj.append('Has_team', formData.hasTeam);
-    if (formData.hasTeam === 'yes') {
-      formDataObj.append('TeamName', formData.teamName);
-    } else {
-      formDataObj.append('TeamName', 'No team');
-    }
-    formDataObj.append('ML_level', formData.ML_level);
+    formDataObj.append('WereMember', formData.wereMember);
+    formDataObj.append('CommentLastSeason', formData.commentLastSeason);
     formDataObj.append('Motivation', formData.motivation);
-    
+    formDataObj.append('Addition', formData.addition);
+
     fetch(
       "...",
       {
@@ -93,7 +116,7 @@ const Registration = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
-        setError("Something went wrong. Please try again and make sure to fill all the fields.");
+        setError("Something went wrong. Please try again and make sure to fill all the required fields.");
       });
   };
 
@@ -147,162 +170,142 @@ const Registration = () => {
 
           {currentStep === 2 && (
             <div>
-              <label htmlFor="phoneNumber" className="block text-lg font-semibold"> Your phone number </label>
+              <label htmlFor="phoneNumber" className="block text-lg font-semibold">Phone Number</label>
               <input
-                  type="text"
-                  id="phoneNumber"
-                  name="phoneNumber"
-                  value={formData.phoneNumber}
-                  onChange={handleChange}
-                  placeholder="Enter your Discord ID"
-                  className="w-full border text-black p-2 rounded-lg mt-2"
-                />
+                type="text"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Enter your phone number (10 digits)"
+                className="w-full border text-black p-2 rounded-lg mt-2"
+              />
             </div>
           )}
 
-          {
-            currentStep === 3 && (
-              <div>
-                <label htmlFor="school" className="block text-lg font-semibold">School</label>
-                <select 
-                  id="school"
-                  name="school"
-                  value={formData.school}
-                  onChange={handleChange}
-                  className="w-full border p-2 rounded-lg mt-2"
-                >
-                  <option value="" disabled >Select your school</option>
-                  <option value="ENSIA">ENSIA - National higher school of artificial intelligence</option>
-                  <option value="ENSM">ENSM - National higher schhol of mathematics</option>
-                  <option value="ENSSA">National higher school of autonomous systems</option>
-                  <option value="ENSNT">National higher school of nano technologies</option>
-                  <option value="ENSCS">National higher school of cyber security</option>
-                  <option value="other">other</option>
-
-                </select>
-
-              </div>
-            )
-          }
+          {currentStep === 3 && (
+            <div>
+              <label htmlFor="school" className="block text-lg font-semibold">School</label>
+              <select 
+                id="school"
+                name="school"
+                value={formData.school}
+                onChange={handleChange}
+                className="w-full border p-2 text-black rounded-lg mt-2"
+              >
+                <option value="" disabled>Select your school</option>
+                <option value="ENSIA">ENSIA - National higher school of artificial intelligence</option>
+                <option value="ENSM">ENSM - National higher school of mathematics</option>
+                <option value="ENSSA">National higher school of autonomous systems</option>
+                <option value="ENSNT">National higher school of nano technologies</option>
+                <option value="ENSCS">National higher school of cyber security</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+          )}
 
           {currentStep === 4 && (
             <div>
-              <label htmlFor="year" className="block text-lg font-semibold">Year</label>
+              <label htmlFor="wereMember" className="block text-lg font-semibold">Were you a member last year? (Yes/No)</label>
               <select
-                  id="year"
-                  name="year"
-                  value={formData.year}
-                  onChange={handleChange}
-                  className="w-full border p-2 rounded-lg mt-2"
-                >
-                  <option value="" disabled>Select your year</option>
-                  <option value="1st">1st Year</option>
-                  <option value="2nd">2nd Year</option>
-                  <option value="3rd">3rd Year</option>
-                </select>
+                id="wereMember"
+                name="wereMember"
+                value={formData.wereMember}
+                onChange={handleChange}
+                className="w-full border p-2 text-black rounded-lg mt-2"
+              >
+                <option value="" disabled>Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
             </div>
           )}
 
-          {currentStep === 5 && (
+          {currentStep === 5 && formData.wereMember === 'Yes' && (
             <div>
-              <label htmlFor="hasTeam" className="block text-lg font-semibold">Do you have a team?</label>
-              <select
-                  id="hasTeam"
-                  name="hasTeam"
-                  value={formData.hasTeam}
-                  onChange={handleChange}
-                  className="w-full border p-2 rounded-lg mt-2"
-                >
-                  <option value="" disabled>Select if you have a team</option>
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </select>
-            </div>
-          )}
-
-          {currentStep === 6 && formData.hasTeam === 'yes' && (
-            <div>
-              <label htmlFor="teamName" className="block text-lg font-semibold">Team Name</label>
+              <label htmlFor="commentLastSeason" className="block text-lg font-semibold">Feel free to drop any comments about last season (optional)</label>
               <input
-                  type="text"
-                  id="teamName"
-                  name="teamName"
-                  value={formData.teamName}
-                  onChange={handleChange}
-                  placeholder="Enter your team name"
-                  className="w-full border p-2 rounded-lg mt-2"
+                type="text"
+                id="commentLastSeason"
+                name="commentLastSeason"
+                value={formData.commentLastSeason}
+                onChange={handleChange}
+                placeholder="Your comments"
+                className="w-full border p-2 text-black rounded-lg mt-2"
+              />
+            </div>
+          )}
+
+          {currentStep === 6 && (
+            <div>
+              <label htmlFor="motivation" className="block text-lg font-semibold">Motivation</label>
+              <textarea
+                id="motivation"
+                name="motivation"
+                value={formData.motivation}
+                onChange={handleChange}
+                placeholder="Explain why you want to join"
+                className="w-full border p-2 text-black rounded-lg mt-2"
               />
             </div>
           )}
 
           {currentStep === 7 && (
             <div>
-              <label htmlFor="ML_level" className="block text-lg font-semibold">Machine Learning Level</label>
-              <select
-                  id="ML_level"
-                  name="ML_level"
-                  value={formData.ML_level}
-                  onChange={handleChange}
-                  className="w-full border text-black p-2 rounded-lg mt-2"
-                >
-                  <option value="" disabled>Select your ML level</option>
-                  <option value="Beginner">Beginner</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Advanced</option>
-                </select>
-            </div>
-          )}
-
-          {currentStep === 8 && (
-            <div>
-              <label htmlFor="motivation" className="block text-lg font-semibold">Motivation</label>
-              <textarea
-                  id="motivation"
-                  name="motivation"
-                  value={formData.motivation}
-                  onChange={handleChange}
-                  placeholder="Describe your motivation"
-                  className="w-full border p-2 rounded-lg mt-2"
+              <label htmlFor="addition" className="block text-lg font-semibold">Addition (optional)</label>
+              <input
+                type="text"
+                id="addition"
+                name="addition"
+                value={formData.addition}
+                onChange={handleChange}
+                placeholder="Any additional info you'd like to share?"
+                className="w-full border p-2 text-black rounded-lg mt-2"
               />
             </div>
           )}
+<div className="flex justify-between mt-6 ">
+{currentStep > 0 && (
+<button
+    type="button"
+    onClick={handleBack}
+    className="border-2 md:mb-4 md:ml-4  border-[#6208AD] text-white py-2 px-4 rounded-[30px] absolute bottom-4 left-4 bg-transparent flex items-center focus:outline-white"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 mr-2">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+  </svg>
+  Back
+</button>
+)}
+{currentStep < 7 && (
+<button
+    type="button"
+    onClick={handleNext}
+    className="mt-4 md:mb-4 md:mr-4  bg-[#6208AD] bg-opacity-55  text-white py-2 px-4 rounded-[30px] absolute bottom-3 right-3 flex items-center focus:outline-none border border-whitet"
+   
+>
+  Next
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 ml-2">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+  </svg>
+</button>
+)}
+{currentStep === 7 && (
+  <button
+  type="submit" 
+  className="mt-4 md:mb-4 md:mr-4  bg-[#6208AD] bg-opacity-55  text-white py-2 px-4 rounded-[30px] absolute bottom-3 right-3 flex items-center focus:outline-none border border-whitet"
+ 
+>
+Submit
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 ml-2">
+  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+</svg>
+</button>
 
-          <div className="flex justify-between mt-6 ">
-            {currentStep > 0 && (
-              <button
-                  type="button"
-                  onClick={handleBack}
-                  className="border-2 md:mb-4 md:ml-4  border-[#6208AD] text-white py-2 px-4 rounded-[30px] absolute bottom-4 left-4 bg-transparent flex items-center focus:outline-white"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 mr-2">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                Back
-              </button>
-            )}
-            {currentStep < 8 && (
-              <button
-                  type="button"
-                  onClick={handleNext}
-                  className="mt-4 md:mb-4 md:mr-4  bg-[#6208AD] bg-opacity-55  text-white py-2 px-4 rounded-[30px] absolute bottom-3 right-3 flex items-center focus:outline-none border border-whitet"
-                 
-              >
-                Next
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 ml-2">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            )}
-            {currentStep === 8 && (
-              <button type="submit" className="mt-4 bg-[#6208AD] text-white py-2 px-7 rounded-[30px] absolute bottom-3 right-3 focus:outline-white">
-                Submit
-              </button>
-            )}
-          </div>
+)}
+</div>
         </form>
       </div>
-
-      
     </div>
   );
 };
