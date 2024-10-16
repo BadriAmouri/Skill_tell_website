@@ -117,7 +117,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center items-center bg-gradient-form bg-cover bg-center text-white"
+    <div className="w-screen h-screen flex justify-center bg-[#2D0439] items-center bg-gradient-form bg-cover bg-center text-white"
      style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="blob-inner-container blur-[40px] rounded-[9999px] absolute left-0 right-0 m-auto overflow-hidden w-[90%] md:w-[45%] h-[50%] md:h-[60%] opacity-90">
