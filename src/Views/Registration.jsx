@@ -1,8 +1,6 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bg from "../assets/bgreg.svg";
-import c from "../assets/circles.webp";
 import "../index.css";
 
 const Registration = () => {
