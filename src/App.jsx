@@ -10,7 +10,7 @@ import Discover_team2 from './Components/Discover_team_Pr';
 import { Navbar } from './Components/Navbar';
 import Timeline from './Sections/Timeline';
 import Hero from './Sections/Hero';
-import Registration from './Views/registration';
+import Registration from './Views/Registration';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
