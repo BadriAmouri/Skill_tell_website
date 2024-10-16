@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { FaBars, FaTimes } from "react-icons/fa"; // Import icons for hamburger and close
 
 // Import your section components
 import Hero from "../Sections/Hero";
@@ -8,6 +9,8 @@ import Discover_team from "../Sections/Discover_team";
 import Timeline from "../Sections/Timeline";
 import Footer from "../Sections/Footer";
 import { Example } from "../Sections/Skill&tell";
+import { useNavigate } from "react-router-dom";
+
 
 export const Navbar = () => {
   // Create refs for each section
@@ -17,7 +20,9 @@ export const Navbar = () => {
   const eventsRef = useRef(null);
   const sponsorsRef = useRef(null);
 
-  // Function to scroll to the section based on the ref passed
+  const [isOpen, setIsOpen] = useState(false); 
+
+ 
   const scrollToSection = (ref) => {
     if (!ref.current) return;
 
@@ -31,10 +36,22 @@ export const Navbar = () => {
   };
 
   return (
-    <div className="bg-black relative py-5 ">
+    <div className="bg-black relative text-white ">
+      <div className="md:hidden flex justify-between items-center px-4 absolute top-[2.2rem] right-[1rem] z-30">
+        {/* Hamburger icon for mobile view */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-white text-2xl focus:outline-none"
+        >
+          {isOpen ? <FaTimes /> : <FaBars />} {/* Toggle between open and close icons */}
+        </button>
+      </div>
+
       <SlideTabs
         scrollToSection={scrollToSection}
         sections={{ heroRef, aboutRef, teamRef, eventsRef, sponsorsRef }}
+        isOpen={isOpen} // Pass state to SlideTabs to show/hide menu
+      
       />
 
       {/* Render your imported sections with refs */}
@@ -51,21 +68,24 @@ export const Navbar = () => {
         <Timeline />
       </div>
       <div ref={sponsorsRef}>
-       <Example/>
+        <Example />
       </div>
       <div>
-        <Footer/>
+        <Footer />
       </div>
+      
     </div>
   );
 };
 
-const SlideTabs = ({ scrollToSection, sections }) => {
+const SlideTabs = ({ scrollToSection, sections, isOpen }) => {
   const [position, setPosition] = useState({
     left: 0,
     width: 0,
     opacity: 0,
   });
+
+  const navigate = useNavigate(); 
 
   return (
     <ul
@@ -75,7 +95,8 @@ const SlideTabs = ({ scrollToSection, sections }) => {
           opacity: 0,
         }));
       }}
-      className=" absolute md:right-16 top-11 md:top-12 mx-auto  flex gap-2 md:gap-9 w-fit rounded-full border-2 border-black bg-white "
+      className={`absolute md:right-16 top-11 md:top-12 mx-auto flex gap-2 md:gap-9 rounded-2xl z-50 bg-white/30 md:bg-transparent inset-0 md:inset-auto h-fit w-[82%] md:w-auto transition-all duration-300 ease-in-out 
+        ${isOpen ? "flex-col p-4 mt-10 left-0 w-full items-center justify-center" : "hidden md:flex justify-end"}`}
     >
       <Tab setPosition={setPosition} onClick={() => scrollToSection(sections.heroRef)}>
         Home
@@ -92,6 +113,12 @@ const SlideTabs = ({ scrollToSection, sections }) => {
       <Tab setPosition={setPosition} onClick={() => scrollToSection(sections.sponsorsRef)}>
         Sponsors
       </Tab>
+
+      <button className=" bg-white rounded-[30px] ">
+      <Tab setPosition={setPosition} onClick={() => navigate("/registration")}>
+        Register
+      </Tab>
+      </button>
 
       <Cursor position={position} />
     </ul>
@@ -116,7 +143,7 @@ const Tab = ({ children, setPosition, onClick }) => {
         });
       }}
       onClick={onClick} // Call onClick function when the tab is clicked
-      className="relative z-10 block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-[19px]"
+      className="relative z-[60] font-semibold block cursor-pointer px-3 py-1.5 text-xs uppercase text-white mix-blend-difference md:px-5 md:py-3 md:text-[19px]"
     >
       {children}
     </li>
@@ -129,7 +156,7 @@ const Cursor = ({ position }) => {
       animate={{
         ...position,
       }}
-      className="absolute z-0 h-7 rounded-full bg-black md:h-12"
+      className="absolute z-0 h-[31px] rounded-[30px] bg-black md:h-[52px] "
     />
   );
 };
