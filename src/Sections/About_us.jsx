@@ -35,10 +35,10 @@ function AboutUs() {
             className="overflow-hidden font-abc pt-40 pl-20  bg-black max-md:pt-24 max-md:pl-5"
             >
                  <motion.div 
-            variants={fadeIn("up", 0.2)}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.7 }}
+            //variants={fadeIn("up", 0.2)}
+            //initial="hidden"
+            //whileInView="show"
+            //viewport={{ once: true, amount: 0.7 }}
         >
             <div className="flex gap-0  max-md:flex-col">
               
@@ -59,7 +59,7 @@ function AboutUs() {
                        
                         <button 
                         onClick={handleClick}
-                        className="px-1 sm:py-2 cursor-pointer sm:px-8 sm:mt-20 max-w-full text-xl sm:text-3xl font-bold text-purple-800 uppercase bg-lime-50 leading-[56px] rounded-[62px] w-[380px] max-md:px-5 max-md:mt-10">
+                        className="px-1 sm:py-2 cursor-pointer z-[70] sm:px-8 sm:mt-20 max-w-full text-xl sm:text-3xl font-bold text-purple-800 uppercase bg-lime-50 leading-[56px] rounded-[62px] w-[380px] max-md:px-5 max-md:mt-10">
                         
                             JOIN NOW
                            
