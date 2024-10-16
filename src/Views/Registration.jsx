@@ -15,7 +15,8 @@ const Registration = () => {
     motivation: '',          // *
     addition: '',            // Optional
   });
-
+  
+  
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState(null);
 
@@ -84,39 +85,34 @@ const Registration = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const formDataObj = new FormData();
-    formDataObj.append('FullName', formData.fullName);
-    formDataObj.append('Email', formData.email);
-    formDataObj.append('PhoneNumber', formData.phoneNumber);
-    formDataObj.append('School', formData.school);
-    formDataObj.append('WereMember', formData.wereMember);
-    formDataObj.append('CommentLastSeason', formData.commentLastSeason);
-    formDataObj.append('Motivation', formData.motivation);
-    formDataObj.append('Addition', formData.addition);
+    // Prepare the data to send
+    const dataToSend = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phoneNumber: formData.phoneNumber,
+      school: formData.school,
+      wereMember: formData.wereMember,
+      commentLastSeason: formData.commentLastSeason,
+      motivation: formData.motivation,
+      addition: formData.addition
+    };
 
-    fetch(
-      "...",
-      {
-        method: "POST",
-        body: formDataObj,
-      }
-    )
-      .then((res) => {
-        if (!res.ok) {
-          throw new Error("Submission failed");
-        }
-        return res.text();
-      })
+    // Send the data to Google Apps Script Web App
+    fetch("https://script.google.com/macros/s/AKfycbyT7lRlmMYvVFwIljDJQ0qNhma-xqRYyCnPLOMDuMqh90yN_IbszzWnykaE5jaNLmIm/exec", {
+      method: "POST",
+      body: JSON.stringify(dataToSend),
+    })
+      .then((response) => response.text())
       .then((data) => {
         if (data.includes("Success")) {
-          navigate("/thank-you");
+          navigate("/");
         } else {
-          throw new Error("Unexpected response from server");
+          throw new Error("Failed to submit data");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        setError("Something went wrong. Please try again and make sure to fill all the required fields.");
+        setError("Something went wrong. Please try again.");
       });
   };
 
@@ -292,7 +288,8 @@ const Registration = () => {
 )}
 {currentStep === 7 && (
   <button
-  type="submit" 
+  type="submit"
+  onClick={handleSubmit}
   className="mt-4 md:mb-4 md:mr-4  bg-[#6208AD] bg-opacity-55  text-white py-2 px-4 rounded-[30px] absolute bottom-3 right-3 flex items-center focus:outline-none border border-whitet"
  
 >

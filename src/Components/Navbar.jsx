@@ -20,12 +20,15 @@ export const Navbar = () => {
   // Function to scroll to the section based on the ref passed
   const scrollToSection = (ref) => {
     if (!ref.current) return;
-  
-    const elementPosition = ref.current.getBoundingClientRect().top + window.pageYOffset;
+
+    const sectionPosition = ref.current.offsetTop;
     
-    window.scrollTo(0, elementPosition);
+    // Custom smooth scroll with a slower speed
+    window.scrollTo({
+      top: sectionPosition,
+      behavior: "smooth",
+    });
   };
-  
 
   return (
     <div className="bg-black relative py-5 ">
