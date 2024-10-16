@@ -136,7 +136,7 @@ const Registration = () => {
           </div>
         )}
         {Success && (
-          <div className="bg-red-100 text-green-600 p-3 mb-4 rounded-lg">
+          <div className="bg-green-100 text-green-600 p-3 mb-4 rounded-lg">
             {Success}
           </div>
         )}
