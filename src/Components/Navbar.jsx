@@ -26,10 +26,13 @@ export const Navbar = () => {
   const scrollToSection = (ref) => {
     if (!ref.current) return;
 
-    const elementPosition = ref.current.getBoundingClientRect().top + window.pageYOffset;
-
-    window.scrollTo(0, elementPosition);
-    setIsOpen(false); 
+    const sectionPosition = ref.current.offsetTop;
+    
+    // Custom smooth scroll with a slower speed
+    window.scrollTo({
+      top: sectionPosition,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -93,7 +96,7 @@ const SlideTabs = ({ scrollToSection, sections, isOpen }) => {
         }));
       }}
       className={`absolute md:right-16 top-11 md:top-12 mx-auto flex gap-2 md:gap-9 rounded-2xl z-50 bg-white/30 md:bg-transparent inset-0 md:inset-auto h-fit w-[82%] md:w-auto transition-all duration-300 ease-in-out 
-        ${isOpen ? "flex-col p-4 mt-10 left-0 w-full items-center justify-center" : "hidden md:flex justify-end"}`}
+        ${isOpen ? "flex-col p-4 mt-10 left-0 w-[82%] md:w-full items-center justify-center" : "hidden md:flex justify-end"}`}
     >
       <Tab setPosition={setPosition} onClick={() => scrollToSection(sections.heroRef)}>
         Home
