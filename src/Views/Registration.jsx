@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bg from "../assets/bgreg.svg";
+import c from "../assets/circles.webp";
 import "../index.css";
 
 const Registration = () => {
@@ -16,7 +17,7 @@ const Registration = () => {
     addition: '',            // Optional
   });
   
-  
+  const [Success , setSuccess] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState(null);
 
@@ -105,7 +106,11 @@ const Registration = () => {
       .then((response) => response.text())
       .then((data) => {
         if (data.includes("Success")) {
-          navigate("/");
+          setSuccess("registered successfully");
+          
+          setTimeout(() => {
+            navigate("/");
+          }, 4000);
         } else {
           throw new Error("Failed to submit data");
         }
@@ -117,7 +122,7 @@ const Registration = () => {
   };
 
   return (
-    <div className="w-screen h-screen flex justify-center bg-[#2D0439] items-center bg-gradient-form bg-cover bg-center text-white"
+    <div className="w-screen h-screen flex bg-[#2D0439] justify-center items-center bg-gradient-form bg-cover bg-center text-white"
      style={{ backgroundImage: `url(${bg})` }}
     >
       <div className="blob-inner-container blur-[40px] rounded-[9999px] absolute left-0 right-0 m-auto overflow-hidden w-[90%] md:w-[45%] h-[50%] md:h-[60%] opacity-90">
@@ -130,6 +135,11 @@ const Registration = () => {
         {error && (
           <div className="bg-red-100 text-red-800 p-3 mb-4 rounded-lg">
             {error}
+          </div>
+        )}
+        {Success && (
+          <div className="bg-red-100 text-green-600 p-3 mb-4 rounded-lg">
+            {Success}
           </div>
         )}
 
