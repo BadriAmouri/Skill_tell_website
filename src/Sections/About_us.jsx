@@ -2,7 +2,8 @@ import React from "react";
 import SkillntellClub from "../Components/About_us_Content";
 import { motion } from "framer-motion";
 import Swiper_Cards from "../Components/Swipper";
-
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 function AboutUs() {
     const fadeIn = (direction, delay) => {
         return {
@@ -24,7 +25,10 @@ function AboutUs() {
           },
         };
       };
-
+      const navigate = useNavigate();
+      const handleClick = () => {
+        navigate('/registration');
+    };
     return (
        
             <main 
@@ -53,8 +57,12 @@ function AboutUs() {
                             Dive into Skillntell and explore how we're shaping the next generation of artificial intelligence innovators. Discover the community that's turning ideas into reality at ENSIA!
                         </p>
                        
-                        <button className="px-1 sm:py-2  sm:px-8 sm:mt-20 max-w-full text-xl sm:text-3xl font-bold text-purple-800 uppercase bg-lime-50 leading-[56px] rounded-[62px] w-[380px] max-md:px-5 max-md:mt-10">
+                        <button 
+                        onClick={handleClick}
+                        className="px-1 sm:py-2 cursor-pointer sm:px-8 sm:mt-20 max-w-full text-xl sm:text-3xl font-bold text-purple-800 uppercase bg-lime-50 leading-[56px] rounded-[62px] w-[380px] max-md:px-5 max-md:mt-10">
+                        
                             JOIN NOW
+                           
                         </button>
                     </div>
     </div>
