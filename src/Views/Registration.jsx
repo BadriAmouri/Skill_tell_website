@@ -128,7 +128,7 @@ const Registration = () => {
 
       <div className="w-full max-w-2xl h-[50%] p-12 bg-black/20 flex justify-center  flex-col backdrop-blur-2xl relative border border-gray-300 rounded-xl md:rounded-[30px] max-sm:mx-8 sm:mx-8">
         {error && (
-          <div className="bg-red-100 text-red-800 p-3 mb-4 rounded-lg">
+          <div className="bg-red-100 text-red-700 p-3 mb-4 rounded-lg">
             {error}
           </div>
         )}
