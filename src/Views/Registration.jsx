@@ -18,6 +18,7 @@ const Registration = () => {
   const [Success , setSuccess] = useState("");
   const [currentStep, setCurrentStep] = useState(0);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -83,6 +84,12 @@ const Registration = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (isLoading) {
+      return; // Prevent multiple submissions
+    }
+
+    setIsLoading(true); // Set loading state to true
 
     // Prepare the data to send
     const dataToSend = {
@@ -298,10 +305,11 @@ const Registration = () => {
   <button
   type="submit"
   onClick={handleSubmit}
+  disabled={isLoading} // Disable the button while loading
   className="mt-4 md:mb-4 md:mr-4  bg-[#6208AD] bg-opacity-55  text-white py-2 px-4 rounded-[30px] absolute bottom-3 right-3 flex items-center focus:outline-none border border-whitet"
  
 >
-Submit
+{isLoading ? 'Loading...' : 'Submit'}
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="h-5 w-5 ml-2">
   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
 </svg>
