@@ -115,7 +115,7 @@ const SlideTabs = ({ scrollToSection, sections, isOpen }) => {
       </Tab>
 
       <button className=" bg-white rounded-[30px] ">
-      <Tab setPosition={setPosition} onClick={() => navigate("/registration")}>
+      <Tab setPosition={setPosition} onClick={() => ''}>
         Register
       </Tab>
       </button>
